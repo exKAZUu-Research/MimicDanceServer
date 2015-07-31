@@ -1,14 +1,38 @@
 <head>
-  <title>MimicDanceServer</title>
+    <title>MimicDanceServer</title>
 </head>
 
 <body>
-  <h1>Welcome to Meteor!</h1>
+<h1>Welcome to Meteor!</h1>
 
-  {{> hello}}
+{{> hello}}
+
+{{#if headerItems}}
+    <table>
+        <tr>
+            {{#each headerItems}}
+                <td>
+                    {{this}}
+                </td>
+            {{/each}}
+        </tr>
+        {{#each playLogs}}
+            <tr>
+                {{> playLog}}
+            </tr>
+        {{/each}}
+    </table>
+{{/if}}
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+    <button>Click Me</button>
+</template>
+
+<template name="playLog">
+    {{#each items}}
+        <td>
+            {{this}}
+        </td>
+    {{/each}}
 </template>

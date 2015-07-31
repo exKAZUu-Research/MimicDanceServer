@@ -1,23 +1,40 @@
+PlayLogs = new Mongo.Collection('play_log');
+
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
+    Template.body.helpers({
+        playLogs: function () {
+            return PlayLogs.find({});
+        },
+        headerItems: function () {
+            var log = PlayLogs.findOne();
+            if (log) {
+                return Object.keys(log).sort();
+            }
+            return null;
+        }
+    });
 
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
+    Template.hello.events({
+        'click button': function () {
+            PlayLogs.insert({
+                text: "a",
+                count: 2
+            });
+        }
+    });
 
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
-    }
-  });
+    Template.playLog.helpers({
+        items: function () {
+            var playLog = this;
+            return Object.keys(playLog).sort().map(function (key) {
+                return playLog[key];
+            });
+        }
+    });
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+    Meteor.startup(function () {
+        // code to run on server at startup
+    });
 }
