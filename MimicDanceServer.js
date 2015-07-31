@@ -73,5 +73,7 @@ if (Meteor.isServer) {
 Meteor.methods({
     reset: function () {
         PlayLogs.remove({});
+        PreQuestionnaireResults.remove({});
+        PostQuestionnaireResults.remove({});
     }
 });
