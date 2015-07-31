@@ -1,5 +1,6 @@
-PlayLogs = new Mongo.Collection('play-log');
-QuestionnaireResults = new Mongo.Collection('questionnaire-result');
+PlayLogs = new Mongo.Collection('PlayLogs');
+PreQuestionnaireResults = new Mongo.Collection('PreQuestionnaireResults');
+PostQuestionnaireResults = new Mongo.Collection('PostQuestionnaireResults');
 
 if (Meteor.isClient) {
     Template.body.helpers({
@@ -13,8 +14,15 @@ if (Meteor.isClient) {
             }
             return null;
         },
-        questionnaireResultHeaderItems: function () {
-            var log = QuestionnaireResults.findOne();
+        preQuestionnaireResultHeaderItems: function () {
+            var log = PreQuestionnaireResults.findOne();
+            if (log) {
+                return Object.keys(log).sort();
+            }
+            return null;
+        },
+        postQuestionnaireResultHeaderItems: function () {
+            var log = PostQuestionnaireResults.findOne();
             if (log) {
                 return Object.keys(log).sort();
             }
@@ -31,7 +39,16 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.questionnaireResult.helpers({
+    Template.preQuestionnaireResult.helpers({
+        items: function () {
+            var item = this;
+            return Object.keys(item).sort().map(function (key) {
+                return item[key];
+            });
+        }
+    });
+
+    Template.postQuestionnaireResult.helpers({
         items: function () {
             var item = this;
             return Object.keys(item).sort().map(function (key) {

@@ -21,18 +21,34 @@
         {{/each}}
     </table>
 {{/if}}
-{{#if questionnaireResultHeaderItems}}
+{{#if preQuestionnaireResultHeaderItems}}
     <table>
         <tr>
-            {{#each questionnaireResultHeaderItems}}
+            {{#each preQuestionnaireResultHeaderItems}}
                 <td>
                     {{this}}
                 </td>
             {{/each}}
         </tr>
-        {{#each questionnaireResults}}
+        {{#each preQuestionnaireResults}}
             <tr>
-                {{> questionnaireResult}}
+                {{> preQuestionnaireResult}}
+            </tr>
+        {{/each}}
+    </table>
+{{/if}}
+{{#if postQuestionnaireResultHeaderItems}}
+    <table>
+        <tr>
+            {{#each postQuestionnaireResultHeaderItems}}
+                <td>
+                    {{this}}
+                </td>
+            {{/each}}
+        </tr>
+        {{#each postQuestionnaireResults}}
+            <tr>
+                {{> postQuestionnaireResult}}
             </tr>
         {{/each}}
     </table>
@@ -47,7 +63,15 @@
     {{/each}}
 </template>
 
-<template name="questionnaireResult">
+<template name="preQuestionnaireResult">
+    {{#each items}}
+        <td>
+            {{this}}
+        </td>
+    {{/each}}
+</template>
+
+<template name="postQuestionnaireResult">
     {{#each items}}
         <td>
             {{this}}
