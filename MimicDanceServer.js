@@ -14,15 +14,6 @@ if (Meteor.isClient) {
         }
     });
 
-    Template.hello.events({
-        'click button': function () {
-            PlayLogs.insert({
-                text: "a",
-                count: 2
-            });
-        }
-    });
-
     Template.playLog.helpers({
         items: function () {
             var playLog = this;
@@ -38,3 +29,9 @@ if (Meteor.isServer) {
         // code to run on server at startup
     });
 }
+
+Meteor.methods({
+    reset: function () {
+        PlayLogs.remove({});
+    }
+});
