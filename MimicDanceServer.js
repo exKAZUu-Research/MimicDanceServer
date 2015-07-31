@@ -1,4 +1,4 @@
-PlayLogs = new Mongo.Collection('play_log');
+PlayLogs = new Mongo.Collection('play-log');
 
 if (Meteor.isClient) {
     Template.body.helpers({
