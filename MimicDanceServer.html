@@ -5,10 +5,10 @@
 <body>
 <h1>Welcome to Meteor!</h1>
 
-{{#if headerItems}}
+{{#if playLogsHeaderItems}}
     <table>
         <tr>
-            {{#each headerItems}}
+            {{#each playLogsHeaderItems}}
                 <td>
                     {{this}}
                 </td>
@@ -21,9 +21,33 @@
         {{/each}}
     </table>
 {{/if}}
+{{#if questionnaireResultHeaderItems}}
+    <table>
+        <tr>
+            {{#each questionnaireResultHeaderItems}}
+                <td>
+                    {{this}}
+                </td>
+            {{/each}}
+        </tr>
+        {{#each questionnaireResults}}
+            <tr>
+                {{> questionnaireResult}}
+            </tr>
+        {{/each}}
+    </table>
+{{/if}}
 </body>
 
 <template name="playLog">
+    {{#each items}}
+        <td>
+            {{this}}
+        </td>
+    {{/each}}
+</template>
+
+<template name="questionnaireResult">
     {{#each items}}
         <td>
             {{this}}
