@@ -7,6 +7,12 @@ if (Meteor.isClient) {
         playLogs: function () {
             return PlayLogs.find({});
         },
+        preQuestionnaireResults: function () {
+            return PreQuestionnaireResults.find({});
+        },
+        postQuestionnaireResults: function () {
+            return PostQuestionnaireResults.find({});
+        },
         playLogsHeaderItems: function () {
             var log = PlayLogs.findOne();
             if (log) {
